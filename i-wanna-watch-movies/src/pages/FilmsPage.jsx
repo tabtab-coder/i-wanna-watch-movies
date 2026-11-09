@@ -1,6 +1,6 @@
 import {useShowtimes} from '../context/ShowtimesContext'
 import FilmCard from '../components/FilmCards';
-  import { Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 
 
 export const FilmsPage = () => {

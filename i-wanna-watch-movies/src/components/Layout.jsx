@@ -13,7 +13,8 @@ const theme = createTheme({
 const links = [
   {to: '/', label: 'Calendar'}, 
   {to: 'films', label: 'Films'}, 
-  {to: 'theaters', label: 'Theaters'}]
+  {to: 'theaters', label: 'Theaters'},
+  {to: 'import', label: 'Import'}]
 
 
 const Layout = () => (
