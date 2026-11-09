@@ -13,9 +13,18 @@ const createPin = (color) =>
     popupAnchor: [0, -30],
   })
 
-const redPin = createPin('#e53935')
+const pins = [
+  '#e53935', // revue: red
+  '#fb8c00', // fox: orange
+  '#f9a825', // imagine: amber
+  '#43a047', // paradise: green
+  '#00897b', // hotdocs: teal
+  '#1e88e5', // dundas: blue
+  '#8e24aa', // scotiabank: purple
+  '#d81b60', // tiff: pink
+].map(createPin)
 
-export const Maps = () => {
+export const Maps = ({theaters}) => {
   const centerPosition = [43.64610218876931, -79.37938038988169]
   const revue = [43.65124336639971, -79.45104597347124]
   const fox = [43.67297133217331, -79.28728944463488]
@@ -27,47 +36,47 @@ export const Maps = () => {
   const tiff = [43.64661574316246, -79.39034925730608]
 
   return (
-    <MapContainer center={centerPosition} zoom={12.2} scrollWheelZoom={false} style={{ height: 400, width: 600 }}>
+    <MapContainer center={centerPosition} zoom={12.2} scrollWheelZoom={false} style={{ height: 400, width: '100%'}}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={revue}>
+      <Marker position={revue} icon={pins[0]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-      <Marker position={fox} icon={redPin}>
+      <Marker position={fox} icon={pins[1]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-      <Marker position={imagine} icon={redPin}>
+      <Marker position={imagine} icon={pins[2]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-      <Marker position={paradise} icon={redPin}>
+      <Marker position={paradise} icon={pins[3]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-      <Marker position={hotdocs} icon={redPin}>
+      <Marker position={hotdocs} icon={pins[4]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-      <Marker position={dundas} icon={redPin}>
+      <Marker position={dundas} icon={pins[5]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-      <Marker position={scotiabank} icon={redPin}>
+      <Marker position={scotiabank} icon={pins[6]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-      <Marker position={tiff} icon={redPin}>
+      <Marker position={tiff} icon={pins[7]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
