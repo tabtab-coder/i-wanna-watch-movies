@@ -4,6 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useState } from 'react';
+import TheatersIcon from '@mui/icons-material/Theaters';
 
 export const TheaterAccordion = ({theaters, filmsByTheater}) => {
 
@@ -18,7 +19,9 @@ export const TheaterAccordion = ({theaters, filmsByTheater}) => {
           aria-controls={`${theater.id}-panel-content`}
           id={`${theater.id}-panel-header`}
         >
-          <Typography component="span">{theater.name} ({filmsByTheater.get(theater.id).length})</Typography>
+          <Typography component="span"> 
+            <TheatersIcon fontSize="inherit" sx={{ color: theater.color, verticalAlign: '-0.125em'}}/> 
+            {theater.name} ({filmsByTheater.get(theater.id).length})</Typography>
         </AccordionSummary>
         <AccordionDetails>
           {filmsByTheater.get(theater.id).map(film => (

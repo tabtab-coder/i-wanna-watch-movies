@@ -13,27 +13,8 @@ const createPin = (color) =>
     popupAnchor: [0, -30],
   })
 
-const pins = [
-  '#e53935', // revue: red
-  '#fb8c00', // fox: orange
-  '#f9a825', // imagine: amber
-  '#43a047', // paradise: green
-  '#00897b', // hotdocs: teal
-  '#1e88e5', // dundas: blue
-  '#8e24aa', // scotiabank: purple
-  '#d81b60', // tiff: pink
-].map(createPin)
-
 export const Maps = ({theaters}) => {
   const centerPosition = [43.64610218876931, -79.37938038988169]
-  const revue = [43.65124336639971, -79.45104597347124]
-  const fox = [43.67297133217331, -79.28728944463488]
-  const imagine = [43.661522671105, -79.3815251581288]
-  const paradise = [43.66129928008207, -79.43073963114203]
-  const hotdocs = [43.66558846416894, -79.41047540677636]
-  const dundas = [43.65710370066342, -79.38035098696454]
-  const scotiabank = [43.64898944087514, -79.3911660292939]
-  const tiff = [43.64661574316246, -79.39034925730608]
 
   return (
     <MapContainer center={centerPosition} zoom={12.2} scrollWheelZoom={false} style={{ height: 400, width: '100%'}}>
@@ -41,47 +22,13 @@ export const Maps = ({theaters}) => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={revue} icon={pins[0]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-      <Marker position={fox} icon={pins[1]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-      <Marker position={imagine} icon={pins[2]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-      <Marker position={paradise} icon={pins[3]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-      <Marker position={hotdocs} icon={pins[4]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-      <Marker position={dundas} icon={pins[5]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-      <Marker position={scotiabank} icon={pins[6]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-      <Marker position={tiff} icon={pins[7]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-
-    </MapContainer>
+      {theaters.map(t => (
+        <Marker key={t.id} position={t.position} icon={createPin(t.color)}>
+          <Popup>
+            {t.name}
+          </Popup>
+        </Marker>
+      ))}
+      </MapContainer>
   )
 }
