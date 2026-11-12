@@ -1,16 +1,21 @@
 import { useEffect, useState } from 'react'
-import { StandaloneWeekView } from '@mui/x-scheduler/week-view';
-import { initialEvents } from './datasets/personal-agenda';
+import { EventCalendar } from '@mui/x-scheduler/event-calendar';
 
-const DEFAULT_RUNTIME_MINUTES = 120
+const DEFAULT_RUNTIME_MINUTES = 30
 
 const HEX_TO_PALETTE = {
   '#1e88e5': 'blue', '#fb8c00': 'orange', '#00897b': 'teal', '#f9a825': 'amber',
   '#43a047': 'green', '#e53935': 'red', '#8e24aa': 'purple', '#d81b60': 'pink',
 }
 
-
-
+const endTimeCalculator = (showDate, showTime, film) => {
+  console.log(film)
+  const runtime = film.runtime && film.runtime >= 40 ? film.runtime : DEFAULT_RUNTIME_MINUTES
+  const start = new Date(`${showDate}T${showTime}`)
+  const end = new Date(start)
+  end.setMinutes(end.getMinutes() + runtime)
+  return end.toISOString()
+}
 
 export const CalendarPage = () => {
   const [showtimes, setShowtimes] = useState([])
@@ -52,27 +57,23 @@ export const CalendarPage = () => {
   ({
     id: t.id,
     start: `${t.showDate}T${t.showTime}`,
-    end: `${t.showDate}T${t.showTime}`,
+    end: endTimeCalculator(t.showDate, t.showTime, t.listing.film),
     title: t.listing.film.title,
     resource: t.listing.theater.id
   })
   )
 
-  console.log(newEvents)
-
-  
-  
-  const events = initialEvents
   if (error) return <p>Couldn't load showtimes: {error.message}</p>
 
   return (
     <div style={{ height: 'calc(100vh - 68px)', width: '100%' }}>
-      <StandaloneWeekView
+      <EventCalendar
         events={newEvents}
         resources={resources}
         defaultVisibleDate={new Date()}
         readOnly
-        viewConfig={{ week: { startTime: 10, endTime: 24 } }}
+        viewConfig={{ week: { startTime: 7, endTime: 24 } }}
+        defaultPreferences={{ isSidePanelOpen: false }}
       />
     </div>
   );
