@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from 'react-router'
 
-import { AppBar, Toolbar, IconButton, Box, Button, Menu, MenuItem, Typography} from '@mui/material';
+import { AppBar, Toolbar, IconButton, Box, Button, Menu, MenuItem, Typography, CssBaseline } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -18,9 +18,9 @@ const links = [
 
 
 const Layout = () => (
-  <>
-    <ThemeProvider theme={theme}>
-      <AppBar position="static" color="secondary">
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <AppBar position="static" color="secondary">
         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' }, justifyContent: 'center' }}>
           {links.map(({to, label}) => (
             <Button
@@ -33,13 +33,12 @@ const Layout = () => (
             </Button>
           ))}
         </Box>
-      </AppBar>
-    </ThemeProvider>
+    </AppBar>
 
     <main>
       <Outlet />
     </main>
-  </>
+  </ThemeProvider>
 )
 
 export default Layout
